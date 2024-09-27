@@ -48,8 +48,8 @@ This API demonstrates features like data validation, encryption (at rest and in 
 - **URL**: `/api/v1/auth/login`
 - **Method**: `POST`
 - **HEADERS**:
-- - `Content-Type: application/x-www-form-urlencoded
-    Authorization: Bearer {{refreshToken}}`
+- - `Content-Type: application/x-www-form-urlencoded`
+- - `Authorization: Bearer {{refreshToken}}`
 
 ### **2. Demo Endpoints**
 
