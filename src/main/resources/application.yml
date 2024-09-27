@@ -1,0 +1,34 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+      schema: public
+    url: jdbc:postgresql://localhost:5432/cyber_shujaa_demo
+    username: # your db username
+    password: # your db password
+  application:
+    name: demo-cyber-shujaa
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+aes:
+  encryption:
+    at-rest:
+      key: '' # encryption for data at rest
+    at-transit:
+      key: '' # encryption key for data in transit
+      enabled: false
+
+properties:
+  security:
+    jwt:
+      secret: '' # your secret key
+      expiration: 86400000 #
+      refresh-token:
+        expiration: 604800000 #

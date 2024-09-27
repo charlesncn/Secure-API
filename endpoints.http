@@ -1,0 +1,50 @@
+###
+@host = http://localhost:8082
+
+
+###
+POST {{host}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test1"
+}
+> {%
+    client.global.set("auth-token", response.body.accessToken);
+%}
+
+###
+POST {{host}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test1"
+}
+> {%
+    client.global.set("auth-token", response.body.accessToken);
+%}
+
+###
+POST http://localhost:8082/api/v1/auth/refresh-token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaHVqYWEiLCJpYXQiOjE3MjczNjkwMDIsImV4cCI6MTcyNzk3MzgwMn0.5kSh2ffHFGKjCBVz6hQ2JKAYYMl4bw5YCbdl8jBC7KM
+
+###
+GET {{host}}/api/v1/demo/unsecured
+
+###
+POST {{host}}/api/v1/demo/secured
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "message": "test",
+  "numbers": [
+    "name2"
+  ],
+  "phoneNumber": 255,
+  "correlationId": "23",
+  "callbackUrl": "http"
+}
